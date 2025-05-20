@@ -53,7 +53,21 @@
                         <li><a href="{% url 'shop' %}">Our Shop</a></li>
                         <li><a href="{% url 'product' %}">Product Details</a></li>
                         <li><a href="{% url 'contact' %}" class="active">Contact Us</a></li>
-                        <li><a href="#">Sign In</a></li>
+                        <li>
+                            {% if user.is_authenticated %}
+                                {# Пользователь вошел в систему #}
+                                <a href="{% url 'logout' %}">Выйти ({{ user.username }})</a>
+                            {% else %}
+                                {# Пользователь не вошел в систему #}
+                                <a href="{% url 'login' %}">Войти</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if not user.is_authenticated %}
+                                {# Ссылка на регистрацию, только если пользователь не вошел #}
+                                <a href="{% url 'register' %}">Регистрация</a>
+                            {% endif %}
+                        </li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -233,29 +247,29 @@
 </footer>
 
 <script>
-        function calculatePerformance() {
-            const form = document.getElementById('quiz-form');
-            const data = new FormData(form);
-            let score = 0;
+    function calculatePerformance() {
+        const form = document.getElementById('quiz-form');
+        const data = new FormData(form);
+        let score = 0;
 
-            for (let value of data.values()) {
-                if (value === 'low') score += 1;
-                else if (value === 'medium') score += 2;
-                else if (value === 'high') score += 3;
-            }
-
-            let resultMessage;
-            if (score <= 5) {
-                resultMessage = "Your PC is low performance.";
-            } else if (score <= 8) {
-                resultMessage = "Your PC is medium performance.";
-            } else {
-                resultMessage = "Your PC is high performance!";
-            }
-
-            alert(resultMessage);
+        for (let value of data.values()) {
+            if (value === 'low') score += 1;
+            else if (value === 'medium') score += 2;
+            else if (value === 'high') score += 3;
         }
-    </script>
+
+        let resultMessage;
+        if (score <= 5) {
+            resultMessage = "Your PC is low performance.";
+        } else if (score <= 8) {
+            resultMessage = "Your PC is medium performance.";
+        } else {
+            resultMessage = "Your PC is high performance!";
+        }
+
+        alert(resultMessage);
+    }
+</script>
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

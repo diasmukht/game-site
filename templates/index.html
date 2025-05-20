@@ -53,7 +53,21 @@
                         <li><a href="{% url 'shop' %}">Our Shop</a></li>
                         <li><a href="{% url 'product' %}">Product Details</a></li>
                         <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                        <li><a href="#">Sign In</a></li>
+                        <li>
+                            {% if user.is_authenticated %}
+                                {# Пользователь вошел в систему #}
+                                <a href="{% url 'logout' %}">Выйти ({{ user.username }})</a>
+                            {% else %}
+                                {# Пользователь не вошел в систему #}
+                                <a href="{% url 'login' %}">Войти</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if not user.is_authenticated %}
+                                {# Ссылка на регистрацию, только если пользователь не вошел #}
+                                <a href="{% url 'register' %}">Регистрация</a>
+                            {% endif %}
+                        </li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -396,8 +410,10 @@
                             </div>
                             <div class="search-input">
                                 <form id="subscribe" action="#">
-                                    <label for="exampleInputEmail1"></label><input type="email" class="form-control" id="exampleInputEmail1"
-                                                                                   aria-describedby="emailHelp" placeholder="Your email...">
+                                    <label for="exampleInputEmail1"></label><input type="email" class="form-control"
+                                                                                   id="exampleInputEmail1"
+                                                                                   aria-describedby="emailHelp"
+                                                                                   placeholder="Your email...">
                                     <button type="submit">Subscribe Now</button>
                                 </form>
                             </div>

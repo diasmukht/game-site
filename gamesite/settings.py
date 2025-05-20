@@ -109,3 +109,9 @@ TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
 
 # WhiteNoise для продакшн статики
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+# Настройка перенаправлений для аутентификации
+LOGIN_REDIRECT_URL = 'home' # Перенаправлять на главную страницу после успешного входа (имя URL 'home')
+LOGOUT_REDIRECT_URL = 'home' # Перенаправлять на главную страницу после выхода
+LOGIN_URL = 'login' # URL для перенаправления, если требуется авторизация (имя URL 'login')
