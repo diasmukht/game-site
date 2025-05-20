@@ -110,6 +110,12 @@ TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
 # WhiteNoise для продакшн статики
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-2f2a.up.railway.app',
+    'https://*.up.railway.app', # Это позволит все поддомены на railway.app
+    # Если у вас есть свой домен, например 'https://www.your-domain.com', добавьте его так:
+    # 'https://www.your-domain.com',
+]
 
 # Настройка перенаправлений для аутентификации
 LOGIN_REDIRECT_URL = 'home' # Перенаправлять на главную страницу после успешного входа (имя URL 'home')
