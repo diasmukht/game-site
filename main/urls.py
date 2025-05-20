@@ -3,7 +3,7 @@ from . import views  # Импортируем ваши view-функции
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.index, name='home'),  # Главная страница
+    path('', views.index, name='index'),  # Главная страница
     path('shop/', views.shop, name='shop'),  # Страница магазина
     path('contact/', views.contact, name='contact'),  # Контакты
     path('product/', views.product, name='product'),
