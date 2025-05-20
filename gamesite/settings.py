@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-pqpawx9sh$=*1nh^2th2&)_y#u8n8+#p%oy)=qn2(g_&k-bcm-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.railway.app'] # Разрешить все домены Railway
 
 # Application definition
 
@@ -66,9 +66,7 @@ WSGI_APPLICATION = 'gamesite.wsgi.application'
 
 # Database: Используем DATABASE_URL от Railway для PostgreSQL
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')  # Railway автоматически предоставит DATABASE_URL
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 # Password validation
